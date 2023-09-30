@@ -1,0 +1,192 @@
+@import url('https://fonts.googleapis.com/css2?family=Darker+Grotesque:wght@300;400;500;600;700;800;900&display=swap');
+
+a {
+  color: #fff;
+}
+
+a:hover {
+  color: #fff;
+}
+
+body {
+  font-family: 'Darker Grotesque', sans-serif;
+  background: linear-gradient(90deg, #135247 0%, #210B4D 100%);
+  color: #fff;
+}
+
+code {
+  color: #fff;
+  font-style: italic;
+}
+
+p {
+  font-size: 22px;
+}
+
+div {
+  font-size: 22px;
+}
+
+hr {
+  background-color: #fff;
+}
+
+.btn-primary, .btn-primary:active, .btn-primary:focus, .btn-primary:disabled {
+  font-size: 22px;
+  background: transparent;
+  box-shadow: none;
+  color: #fff;
+  border: 2px solid white;
+}
+
+.btn-primary:hover {
+  font-size: 22px;
+  color: #000;
+  background: #fff;
+  border: 2px solid white;
+}
+
+.btn-secondary, .btn-secondary:active, .btn-secondary:focus, .btn-secondary:disabled {
+  font-size: 20px;
+  font-weight: 600;
+  background: #e4007b;
+  box-shadow: none;
+  color: #fff;
+  border: 2px solid #e4007b;
+  padding-bottom: 10px;
+}
+
+.btn-secondary:hover {
+  font-size: 20px;
+  font-weight: 600;
+  color: #020722;
+  background: #4ccbc9;
+  border: 2px solid #4ccbc9;
+  box-shadow: 0 0 0 0.2rem #4ccbc9;
+}
+
+.card-img-wallet:hover {
+  opacity: 0.5;
+}
+
+.card-img-wallet:active {
+  transform: scale(0.8);
+}
+
+.container {
+  background: transparent;
+  padding: 20px;
+  border-radius: 10px;
+  border: 2px solid #fff;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.domain-input {
+  font-size: 24px !important;
+}
+
+.dropdown-menu {
+  font-size: 20px;
+  font-weight: 600;
+  color: #fff;
+  background-color: #e4007b;
+}
+
+.dropdown-menu .dropdown-item:hover {
+  background-color: #4ccbc9;
+}
+
+.dropdown-menu .dropdown-item {
+  font-size: 20px;
+  font-weight: 600;
+  color: #fff;
+  background-color: transparent;
+}
+
+.dropdown-toggle {
+  vertical-align: middle;
+}
+
+.img-thumbnail {
+  background-color: transparent;
+}
+
+.input-span-extension {
+  font-size: 22px !important;
+}
+
+.modal-content {
+  color: black;
+}
+
+.navbar-brand {
+  font-size: 45px;
+  font-weight: 800;
+  font-style: italic;
+}
+
+.primary-menu .nav-link {
+  position: relative;
+  font-size: 16px;
+  font-weight: 600;
+  text-transform: uppercase;
+  line-height: 30px;
+  padding: 10px 20px;
+  color: #fff;
+}
+
+.primary-menu .nav-link .nav-text {
+  display: inline-block;
+  position: relative;
+}
+
+.primary-menu .nav-link .nav-text:hover {
+  color: #4ccbc9;
+}
+
+.span-link:hover {
+  color: #1c1b1b;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.span-link {
+  text-decoration: underline;
+}
+
+.table > tbody > tr > td {
+  color: white;
+  background-color: transparent;
+}
+
+.text-align-header h1 {
+  font-size: 45px;
+  font-weight: 800;
+}
+
+.Vue-Toastification__toast--info {
+  background-color: #464555;
+}
+
+.Vue-Toastification__toast--success {
+  background-color: #00925D;
+}
+
+.Vue-Toastification__toast--error {
+  background-color: #DF2E00;
+}
+
+.wallet-img-wrapper {
+  border-width: 2px;
+  border-color: #ffffff;
+  border-style: solid;
+}
+
+@media only screen and (max-width: 767px) {
+  #sidebar-container {
+    margin-bottom: 15px;
+  }
+}
