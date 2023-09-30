@@ -106,7 +106,7 @@ hr {
   background-color: transparent;
 }
 
-.dropdown-toggle {
+.dropdown-toggle:after {
   vertical-align: middle;
 }
 
