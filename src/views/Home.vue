@@ -3,10 +3,10 @@
     <img class="img-fluid main-img rounded" src="../assets/logo.png" />
 
     <div class="text-align-header mt-4 mb-2">
-      <h1>Mint your {{getTldName}} web3 ID!</h1>
+      <h1>Mint your {{getTldName}} digital ID!</h1>
       <p>
-        And start chatting with other L2 enthusiasts on 
-        <a href="https://basepunk.xyz" target="_blank">BasePunk.xyz</a>!
+        And start chatting with other comunity members on 
+        <a href="https://chat.basepunk.xyz" target="_blank">BasePunk Chat</a>!
       </p>
     </div>
 
@@ -14,7 +14,7 @@
       <div class="input-group domain-input input-group-lg input-sizing">
         <input
           v-model="chosenDomainName" 
-          placeholder="enter desired name"
+          placeholder="enter a desired name"
           type="text" 
           class="form-control text-end border-2 border-end-0 border-light domain-input"
           aria-label="Text input with dropdown button"

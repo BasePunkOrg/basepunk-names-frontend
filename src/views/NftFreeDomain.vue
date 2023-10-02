@@ -4,7 +4,7 @@
     <div class="text-align-header mt-4 mb-2">
       <h1>Mint a 4+ character {{getTldName}} name for free!</h1>
       <p>
-        If you hold a BasePunk NFT.
+        If you hold a <a href="https://opensea.io/collection/base-punk-5" target="_blank">BasePunk NFT</a>.
       </p>
     </div>
 

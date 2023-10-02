@@ -168,15 +168,22 @@ hr {
 }
 
 .Vue-Toastification__toast--info {
+  font-size: 14px !important;
   background-color: #464555;
 }
 
 .Vue-Toastification__toast--success {
+  font-size: 14px !important;
   background-color: #00925D;
 }
 
 .Vue-Toastification__toast--error {
+  font-size: 14px !important;
   background-color: #DF2E00;
+}
+
+.waiting-toast {
+  font-size: 15px !important;
 }
 
 .wallet-img-wrapper {

@@ -1,7 +1,7 @@
 <template>
   <div>
       <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
-      <span class="mx-2">{{text}}</span>
+      <span class="mx-2 waiting-toast">{{text}}</span>
   </div>
 </template>
 

@@ -21,7 +21,7 @@
 
     <a class="icons" target="_blank" href="https://twitter.com/Punkonbase"><i class="bi bi-twitter"></i></a>
 
-    <a class="icons" target="_blank" href="https://github.com/basepunk"><i class="bi bi-github"></i></a>
+    <a class="icons" target="_blank" href="https://github.com/BasePunkOrg"><i class="bi bi-github"></i></a>
 
     <a class="icons" target="_blank" href="https://discord.gg/basepunk"><i class="bi bi-discord"></i></a>
 

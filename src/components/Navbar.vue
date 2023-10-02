@@ -20,18 +20,18 @@
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" target="_blank" href="https://basepunk.xyz/litepaper/">
-                <span class="nav-text">Litepaper</span>
+              <router-link class="nav-link" to="/nft-free-domain">
+                <span class="nav-text">Mint free domain!</span>
+              </router-link>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" target="_blank" href="https://chat.basepunk.xyz">
+                <span class="nav-text">Chat</span>
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" target="_blank" href="https://medium.com/@punkonbase">
-                <span class="nav-text">Whitepaper</span>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" target="_blank" href="https://opensea.io/collection/base-punk-5">
-                <span class="nav-text">PUNK Gallery</span>
+              <a class="nav-link" target="_blank" href="https://opensea.io/collection/basepunk-id">
+                <span class="nav-text">Marketplace</span>
               </a>
             </li>
           </ul>
@@ -69,7 +69,7 @@
                 <router-link tag="li" class="dropdown-item" to="/send-tokens">Send tokens</router-link>
                 <!-- <router-link tag="li" class="dropdown-item" to="/about">About</router-link> -->
                 <!-- <router-link tag="li" class="dropdown-item" to="/browser">Browser extension</router-link> -->
-                <li class="dropdown-item" @click="openUrl('https://docs.punk.domains/')">Docs</li>
+                <!-- <li class="dropdown-item" @click="openUrl('https://docs.punk.domains/')">Docs</li> -->
                 <li class="dropdown-item" @click="logout">Disconnect</li>
               </ul>
             </div>
