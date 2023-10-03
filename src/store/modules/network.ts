@@ -17,7 +17,7 @@ export default {
   getters: { 
     getBlockExplorerBaseUrl() {
       // TODO
-      return "https://basescan.com";
+      return "https://basescan.org";
     },
     
     getChainId() {
