@@ -214,13 +214,15 @@ export default {
           commit("setIsMinterAdmin", false);
         }
 
-        // check if current user is manager of the minter contract
-        const isManager = await minterContract.isManager(address.value);
+        if (minterAdmin != address.value) {
+          // check if current user is manager of the minter contract
+          const isManager = await minterContract.isManager(address.value);
 
-        if (isManager) {
-          commit("setIsMinterAdmin", true);
-        } else {
-          commit("setIsMinterAdmin", false);
+          if (isManager) {
+            commit("setIsMinterAdmin", true);
+          } else {
+            commit("setIsMinterAdmin", false);
+          }
         }
 
         // check if user has any admin privileges
