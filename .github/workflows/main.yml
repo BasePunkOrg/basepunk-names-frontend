@@ -27,6 +27,6 @@ jobs:
       - name: Create and checkout new branch
         run: |
           git checkout -b build
-          git add dist
+          git add -f dist
           git commit -m "Add built files"
           git push -f origin build
