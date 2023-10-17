@@ -206,7 +206,7 @@ export default {
 		});
 
 		const mmConnector = new MetaMaskConnector({
-			appUrl: "BasePunk ID",
+			appUrl: "https://id.basepunk.xyz",
 		});
 
     // wallet connect v2
