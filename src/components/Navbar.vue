@@ -64,6 +64,7 @@
               <ul class="dropdown-menu dropdown-menu-start" aria-labelledby="dropdownMenuButton2">
                 <router-link tag="li" class="dropdown-item" to="/profile">Profile</router-link>
                 <router-link tag="li" class="dropdown-item" to="/nft-free-domain">Free domain</router-link>
+                <router-link tag="li" class="dropdown-item" to="/partner-nft-discount">Partner discount</router-link>
                 <router-link tag="li" class="dropdown-item" to="/">Buy domain</router-link>
                 <router-link tag="li" class="dropdown-item" to="/search-domain">Search domain</router-link>
                 <router-link tag="li" class="dropdown-item" to="/send-tokens">Send tokens</router-link>

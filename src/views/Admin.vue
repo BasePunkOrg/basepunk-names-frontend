@@ -355,11 +355,41 @@
       </div>
       <!-- END TLD: transferOwnership -->
 
-      <!-- Minter: add NFT address to whitelist 
+      <!-- Minter: changePartnerDiscount -->
       <div v-if="isUserMinterAdmin">
-        <h3>Minter contract: add NFT address to whitelist</h3>
+        <h3>Change discount</h3>
 
-        <p>NFT holders will be able to mint one domain per NFT for free.</p>
+        <p>Important: Discounts are defined in basis points (bps). Current: {{getMinterDiscountPercentage*100}} bps ({{getMinterDiscountPercentage}}%).</p>
+
+        <div class="row mt-5">
+          <div class="col-md-6 offset-md-3">
+            <input 
+              v-model="newDiscount"
+              class="form-control text-center border-2 border-light"
+              placeholder="Enter a new discount (in bps)"
+            >
+          </div>
+        </div>
+
+        <button 
+          v-if="isActivated" 
+          class="btn btn-primary btn-lg mt-3" 
+          @click="changeDiscount" 
+          :disabled="waitingCd"
+        >
+          <span v-if="waitingCd" class="spinner-border spinner-border-sm mx-1" role="status" aria-hidden="true"></span>
+          <span>Change discount</span>
+        </button>
+
+        <hr />
+      </div>
+      <!-- END Minter: changePartnerDiscount -->
+
+      <!-- Minter: add NFT address to whitelist -->
+      <div v-if="isUserMinterAdmin">
+        <h3>Add NFT address to discount whitelist</h3>
+
+        <p>NFT holders will be able get a discount.</p>
 
         <div class="row mt-5">
           <div class="col-md-6 offset-md-3">
@@ -383,21 +413,20 @@
 
         <hr />
       </div>
-      -->
       <!-- END Minter: add NFT address to whitelist -->
 
-      <!-- Minter: remove NFT address from whitelist 
+      <!-- Minter: remove NFT address from whitelist -->
       <div v-if="isUserMinterAdmin">
-        <h3>Minter contract: remove NFT address from whitelist</h3>
+        <h3>Remove NFT address from the discount whitelist</h3>
 
-        <p>NFT holders will NOT be able to mint one domain per NFT for free anymore.</p>
+        <p>This NFT holders will NOT be able to get a discount anymore.</p>
 
         <div class="row mt-5">
           <div class="col-md-6 offset-md-3">
             <input 
               v-model="whitelistRemoveNftAddress"
               class="form-control text-center border-2 border-light"
-              placeholder="Enter a whitelisted NFT address to remove"
+              placeholder="Enter a NFT address to remove"
             >
           </div>
         </div>
@@ -414,14 +443,13 @@
 
         <hr />
       </div>
-      -->
       <!-- END Minter: remove NFT address from whitelist -->
 
       <!-- Minter: ownerFreeMint -->
       <div v-if="isUserMinterAdmin">
-        <h3>Minter contract: mint a domain for free</h3>
+        <h3>Mint a domain for free</h3>
 
-        <p>The owner of the Minter contract can mint a domain for free.</p>
+        <p>The owner/manager can mint a domain for free.</p>
 
         <div class="row mt-5">
           <div class="col-md-6 offset-md-3">
@@ -482,6 +510,7 @@ export default {
 
   data() {
     return {
+      newDiscount: null,
       newDomain: null,
       newDomainOwner: null,
       newMetadataAddress: null,
@@ -496,6 +525,7 @@ export default {
       newPrice6: null,
       newReferralFee: null,
       waitingAaw: false, // waiting for TX to complete
+      waitingCd: false, // waiting for TX to complete
       waitingCma: false, // waiting for TX to complete
       waitingCmia: false, // waiting for TX to complete
       waitingMfd: false,
@@ -519,7 +549,7 @@ export default {
     ...mapGetters("punk", ["getTldAbi"]),
     ...mapGetters("network", ["getBlockExplorerBaseUrl"]),
     ...mapGetters("user", ["isUserMinterAdmin", "isUserTldAdmin", "isUserRoyaltyFeeUpdater"]),
-    ...mapGetters("tld", ["getMinterAddress", "getReferralFee", "getTldAddress", "getMinterPaused", "getMinterTldPrice1", "getMinterTldPrice2", "getMinterTldPrice3", "getMinterTldPrice4", "getMinterTldPrice5", "getMinterTldPrice6"]),
+    ...mapGetters("tld", ["getMinterDiscountPercentage", "getMinterAddress", "getReferralFee", "getTldAddress", "getMinterPaused", "getMinterTldPrice1", "getMinterTldPrice2", "getMinterTldPrice3", "getMinterTldPrice4", "getMinterTldPrice5", "getMinterTldPrice6"]),
   },
 
   methods: {
@@ -529,13 +559,11 @@ export default {
       this.waitingAaw = true;
 
       // minter contract (with signer)
-      const minterIntfc = new ethers.utils.Interface([
-        "function addWhitelistedNft(address _nftAddress) external"
-      ]);
+      const minterIntfc = new ethers.utils.Interface(MinterAbi);
       const minterContractSigner = new ethers.Contract(this.getMinterAddress, minterIntfc, this.signer);
 
       try {
-        const tx = await minterContractSigner.addWhitelistedNft(this.whitelistAddNftAddress);
+        const tx = await minterContractSigner.addPartnerNftAddress(this.whitelistAddNftAddress);
 
         const toastWait = this.toast(
           {
@@ -554,7 +582,7 @@ export default {
 
         if (receipt.status === 1) {
           this.toast.dismiss(toastWait);
-          this.toast("You have successfully added NFT address to the whitelist!", {
+          this.toast("You have successfully added NFT address to the discount whitelist!", {
             type: TYPE.SUCCESS,
             onClick: () => window.open(this.getBlockExplorerBaseUrl+"/tx/"+tx.hash, '_blank').focus()
           });
@@ -576,6 +604,57 @@ export default {
       }
 
       this.waitingAaw = false;
+    },
+
+    async changeDiscount() {
+      this.waitingCd = true;
+
+      // minter contract (with signer)
+      const minterIntfc = new ethers.utils.Interface(MinterAbi);
+      const minterContractSigner = new ethers.Contract(this.getMinterAddress, minterIntfc, this.signer);
+
+      try {
+        const tx = await minterContractSigner.changePartnerDiscount(Number(this.newDiscount));
+
+        const toastWait = this.toast(
+          {
+            component: WaitingToast,
+            props: {
+              text: "Please wait for your transaction to confirm. Click on this notification to see transaction in the block explorer."
+            }
+          },
+          {
+            type: TYPE.INFO,
+            onClick: () => window.open(this.getBlockExplorerBaseUrl+"/tx/"+tx.hash, '_blank').focus()
+          }
+        );
+
+        const receipt = await tx.wait();
+
+        if (receipt.status === 1) {
+          this.toast.dismiss(toastWait);
+          this.toast("You have changed discount!", {
+            type: TYPE.SUCCESS,
+            onClick: () => window.open(this.getBlockExplorerBaseUrl+"/tx/"+tx.hash, '_blank').focus()
+          });
+          this.waitingCd = false;
+        } else {
+          this.toast.dismiss(toastWait);
+          this.toast("Transaction has failed.", {
+            type: TYPE.ERROR,
+            onClick: () => window.open(this.getBlockExplorerBaseUrl+"/tx/"+tx.hash, '_blank').focus()
+          });
+          console.log(receipt);
+          this.waitingCd = false;
+        }
+
+      } catch (e) {
+        console.log(e)
+        this.waitingCd = false;
+        this.toast(e.message, {type: TYPE.ERROR});
+      }
+
+      this.waitingCd = false;
     },
 
     async changeMetadataAddress() {
@@ -944,13 +1023,11 @@ export default {
       this.waitingRaw = true;
 
       // minter contract (with signer)
-      const minterIntfc = new ethers.utils.Interface([
-        "function removeWhitelistedNft(address _nftAddress) external"
-      ]);
+      const minterIntfc = new ethers.utils.Interface(MinterAbi);
       const minterContractSigner = new ethers.Contract(this.getMinterAddress, minterIntfc, this.signer);
 
       try {
-        const tx = await minterContractSigner.removeWhitelistedNft(this.whitelistRemoveNftAddress);
+        const tx = await minterContractSigner.removePartnerNftAddress(this.whitelistRemoveNftAddress);
 
         const toastWait = this.toast(
           {
@@ -969,7 +1046,7 @@ export default {
 
         if (receipt.status === 1) {
           this.toast.dismiss(toastWait);
-          this.toast("You have successfully removed NFT address from the whitelist!", {
+          this.toast("You have successfully removed NFT address from the discount whitelist!", {
             type: TYPE.SUCCESS,
             onClick: () => window.open(this.getBlockExplorerBaseUrl+"/tx/"+tx.hash, '_blank').focus()
           });

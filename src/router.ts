@@ -13,7 +13,7 @@ import SearchDomains from './views/SearchDomains.vue'
 import SendTokens from './views/SendTokens.vue'
 import TransferDomain from './views/TransferDomain.vue'
 import NftFreeDomain from './views/NftFreeDomain.vue'
-import PartnerFreeDomain from './views/PartnerFreeDomain.vue'
+import PartnerNftDiscount from './views/PartnerNftDiscount.vue'
 
 // For info on using Vue Router with the Composition API, see https://next.router.vuejs.org/guide/advanced/composition-api.html
 
@@ -60,9 +60,9 @@ const routes: Array<RouteRecordRaw> = [
     component: HowItWorks,
   },
   {
-    path: '/partner-free-domain',
-    name: 'PartnerFreeDomain',
-    component: PartnerFreeDomain,
+    path: '/partner-nft-discount',
+    name: 'PartnerNftDiscount',
+    component: PartnerNftDiscount,
   },
   {
     path: '/profile',

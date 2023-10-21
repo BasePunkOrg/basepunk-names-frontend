@@ -168,6 +168,11 @@ export default {
       const domainPrice6 = ethers.utils.formatEther(priceWei6);
       commit("setMinterTldPrice6", domainPrice6);
 
+      // fetch discount in bps
+      const discountBps = await minterContract.discountBps();
+      const discountPercentage = discountBps / 100;
+      commit("setDiscountPercentage", discountPercentage);
+
       // fetch referral fee
       const refFee = await minterContract.referralFee();
       commit("setReferralFee", refFee);
