@@ -109,8 +109,7 @@ export default function useChainHelpers() {
       } else if (networkId === 8453) {
         // Base Mainnet
         urls = [
-          "https://mainnet.base.org",
-          "https://base.meowrpc.com"
+          "https://mainnet.base.org"
         ];
       } else if (networkId === 42161) {
         // Arbitrum
